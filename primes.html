@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Поиск всех простых чисел</title>
+</head>
+<body>
+  <script>
+        
+    // простой перебор всех чисел
+    function allPrimeNums(n) {
+
+      let newArr = [];
+
+      for (let i=2; i<=n; i++) {
+        
+        let isPrime = true;
+        
+        let k = i - 1;
+        while (k>1) {            
+        
+          if (!(i % k)) {
+            isPrime = false;
+            break;
+          }         
+
+          k--;
+
+        }
+
+        if (isPrime) newArr.push(i);
+       
+      }
+      return newArr;
+    }
+    
+    
+    console.log(allPrimeNums(12));
+
+
+
+
+    // перебор простых чисел
+    function allPrimeNumsSimple(n) {
+
+    let newArr = [2];
+
+    for (let i=3; i<=n; i++) {
+      
+      let isPrime = true;
+      
+      let k=0;
+
+      while (k<newArr.length) {
+
+        if (!(i % newArr[k])) {
+          isPrime = false;
+          break;
+        }    
+        k++;
+
+      }      
+
+      if (isPrime) newArr.push(i);
+    
+    }
+    return newArr;
+    }
+
+
+    console.log(allPrimeNumsSimple(45));
+
+  </script>
+</body>
+</html>
