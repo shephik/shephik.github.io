@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Баланс скобок</title>
+</head>
+<body>
+  <script>
+        
+    function bracketBalance(str) {
+      const bracketsOpen = ['{', '(', '['];
+      const bracketsClose = ['}', ')', ']'];
+      const bracketsPairs = {
+        '{': '}',
+        '(': ')',
+        '[': ']'
+      };
+
+      const strArr = str.split('');
+
+      let bracketsArr = [];
+
+      for (let i=0; i<strArr.length; i++) {
+
+        let braket = strArr[i]; 
+
+         // если это скобка открывающая
+        if (bracketsOpen.indexOf(braket) > -1) {
+         // добавляем в массив
+         bracketsArr.push(braket);
+        } 
+
+        // если это скобка закрывающая
+        if (bracketsClose.indexOf(braket) > -1) {
+          // если пустой массив открывающих
+          if (!bracketsArr.length) return false;
+
+          //  получаем последнее значение в открывающих
+          let lastOpenBracket = bracketsArr[bracketsArr.length - 1];
+       
+          // если пара соответствует
+          if (bracketsPairs[lastOpenBracket] === braket) {
+          // удаляем последнее из открывающих
+            bracketsArr.pop();
+          } else return false;
+         
+        } 
+
+      }
+      // если не очистили массив полностью
+      if (bracketsArr.length) return false; 
+
+      return true;
+    }
+    
+    let str = '({(sdd){sd}([dff(dsd)]dfdf)})'
+    console.log(bracketBalance(str))
+  </script>
+</body>
+</html>
